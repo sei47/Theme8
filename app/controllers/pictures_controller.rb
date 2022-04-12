@@ -22,10 +22,11 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    redirect_to pictures_path unless  current_user.id == User.find_by(id: @picture.user_id)
   end
 
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
     respond_to do |format|
       if @picture.save
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully created." }
@@ -50,10 +51,14 @@ class PicturesController < ApplicationController
   end
 
   def destroy
-    @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
-      format.json { head :no_content }
+    if current_user.id == User.find_by(id: @picture.user_id)
+      @picture.destroy
+      respond_to do |format|
+        format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to pictures_path
     end
   end
 
