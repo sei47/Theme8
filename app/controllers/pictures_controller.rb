@@ -16,12 +16,16 @@ class PicturesController < ApplicationController
     end
   end
 
+  def confirm
+    @picture = current_user.pictures.build(picture_params)
+    render :new if @picture.invalid?
+  end
+
   def edit
   end
 
   def create
     @picture = Picture.new(picture_params)
-
     respond_to do |format|
       if @picture.save
         format.html { redirect_to picture_url(@picture), notice: "Picture was successfully created." }
