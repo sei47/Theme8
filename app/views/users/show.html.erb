@@ -1,8 +1,12 @@
 <h1><%= @user.name %></h1>
 
 <p>メールアドレス:<%= @user.email %></p>
-<p><%= @user.profile %></p>
-<p><%= image_tag @user.profile_image_url %></p>
+<% if @user.profile %>
+  <p><%= @user.profile %></p>
+<% end %>
+<% unless @user.profile_image_url == nil %>
+  <p><%= image_tag @user.profile_image_url %></p>
+<% end %>
 <%= link_to "一覧へ", pictures_path %>
 
 <%= link_to 'Edit', edit_user_path(@user) %>

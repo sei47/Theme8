@@ -10,7 +10,7 @@ class PicturesController < ApplicationController
 
   def new
     if params[:back]
-      @picture = picture.new(picture_params)
+      @picture = Picture.new(picture_params)
     else
       @picture = Picture.new
     end
@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
     @picture = current_user.pictures.build(picture_params)
     respond_to do |format|
       if @picture.save
-        format.html { redirect_to picture_url(@picture), notice: "Picture was successfully created." }
+        format.html { redirect_to picture_url(@picture), notice: "投稿しました" }
         format.json { render :show, status: :created, location: @picture }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,24 +39,25 @@ class PicturesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @picture.update(picture_params)
-        format.html { redirect_to picture_url(@picture), notice: "Picture was successfully updated." }
-        format.json { render :show, status: :ok, location: @picture }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+    if current_user.id == User.find_by(id: @picture.user_id).id
+      respond_to do |format|
+        if @picture.update(picture_params)
+          format.html { redirect_to picture_url(@picture), notice: "更新しました" }
+          format.json { render :show, status: :ok, location: @picture }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @picture.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to pictures_path
     end
   end
 
   def destroy
-    if current_user.id == User.find_by(id: @picture.user_id)
+    if current_user.id == User.find_by(id: @picture.user_id).id
       @picture.destroy
-      respond_to do |format|
-        format.html { redirect_to pictures_url, notice: "Picture was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      redirect_to pictures_url, notice: "削除しました"
     else
       redirect_to pictures_path
     end
