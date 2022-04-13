@@ -5,5 +5,5 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  resources :users, only:[:new, :create, :show]
+  resources :users, only:[:new, :create, :show, :edit, :update]
 end
