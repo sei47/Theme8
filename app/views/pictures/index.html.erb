@@ -21,7 +21,10 @@
       <td><%= image_tag(picture.image.url) %>
     </tr>
     <tr>
-      <%= link_to 'Show', picture %>/<%= link_to 'Edit', edit_picture_path(picture) %>/<%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show', picture %>
+      <% if current_user.id == User.find_by(id: picture.user_id).id%>
+        /<%= link_to 'Edit', edit_picture_path(picture) %>/<%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
