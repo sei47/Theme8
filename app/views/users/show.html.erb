@@ -8,5 +8,5 @@
   <p><%= image_tag @user.profile_image_url %></p>
 <% end %>
 <%= link_to "一覧へ", pictures_path %>
-
+<%= link_to "お気に入り一覧へ", favorites_path %>
 <%= link_to 'Edit', edit_user_path(@user) %>
