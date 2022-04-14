@@ -1,12 +1,23 @@
-<h1><%= @user.name %></h1>
-
-<p>メールアドレス:<%= @user.email %></p>
-<% if @user.profile %>
-  <p><%= @user.profile %></p>
-<% end %>
-<% unless @user.profile_image_url == nil %>
-  <p><%= image_tag @user.profile_image_url %></p>
-<% end %>
-<%= link_to "一覧へ", pictures_path %>
-<%= link_to "お気に入り一覧へ", favorites_path %>
-<%= link_to 'Edit', edit_user_path(@user) %>
+<div class="container">
+  <div class="row">
+    <table class="user">
+      <th><%= @user.name %>のぺージ</th>
+      <tr class="user_speace">
+        <td class="link">メールアドレス:<%= @user.email %></td>
+      </tr>
+      <tr class="user_speace">
+        <% if @user.profile %>
+          <p><%= @user.profile %></p>
+        <% end %>
+        <% unless @user.profile_image_url == nil %>
+          <p><%= image_tag @user.profile_image_url %></p>
+        <% end %>
+      </tr>
+      <td class="link">
+        <%= link_to "一覧へ", pictures_path %>|
+        <%= link_to "お気に入り一覧へ", favorites_path %>|
+        <%= link_to 'Edit', edit_user_path(@user) %>
+      </td>
+    </table>
+  </div>
+</div>

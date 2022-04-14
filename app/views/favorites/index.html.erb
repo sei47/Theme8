@@ -1,18 +1,22 @@
-<h1><%= current_user.name %>のお気に入りページ</h1>
+<div class="container">
+  <div class="row">
+    <h1><%= current_user.name %>のお気に入りページ</h1>
 
-<table>
-  <% @favorites.each do |favorite| %>
-    <th>投稿者：<%= favorite.user.name %></th>
-    <tr>
-      <td><%= favorite.content %></td>
-    </tr>
-    <tr>
-      <td><%= image_tag(favorite.image.url) %></td>
-    </tr>
-    <tr>
-      <td>
-        <%= link_to 'Show', favorite %>
-      </td>
-    </tr>
-  <% end %>
-</table>
+    <table class="home">
+      <% @favorites.each do |favorite| %>
+        <th>投稿者：<%= favorite.user.name %></th>
+        <tr>
+          <td><%= favorite.content %></td>
+        </tr>
+        <tr>
+          <td><%= image_tag(favorite.image.url) %></td>
+        </tr>
+        <tr>
+          <td class="controll">
+            <%= link_to 'Show', favorite %>|<%= link_to 'Back', pictures_path %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

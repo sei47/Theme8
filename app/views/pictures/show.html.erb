@@ -1,13 +1,20 @@
-<p><%= @picture.content %></p>
-<p><%= image_tag @picture.image_url %></p>
+<div class="container">
+  <div class="row">
+    <div class="home">
+      <p class="text"><%= @picture.content %></p>
+      <p><%= image_tag @picture.image_url %></p>
+    </div>
+      <div class="controll">
+        <% unless @picture.user_id == current_user.id %>
+          <% if @favorite.present? %>
+            <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-warning' %>
+          <% else %>
+            <%= link_to 'お気に入り登録', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-primary'%>
+          <% end %>
+        <% end %>
 
-<% unless @picture.user_id == current_user.id %>
-  <% if @favorite.present? %>
-    <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-dander' %>
-  <% else %>
-    <%= link_to 'お気に入り登録', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-primary'%>
-  <% end %>
-<% end %>
-
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+        <%= link_to 'Edit', edit_picture_path(@picture) %> |
+        <%= link_to 'Back', pictures_path %>
+    </div>
+  </div>
+</div>

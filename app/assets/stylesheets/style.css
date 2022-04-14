@@ -1,0 +1,61 @@
+.container{
+  min-height: 100%;
+  position: relative;
+}
+
+.new_button{
+  position: fixed;
+  top: 50px;
+  left: 30px;
+}
+
+.form{
+   display:block;
+   text-align: right;
+   width: 50%;
+}
+
+.home{
+  background-color: #c0c0c0;
+  border: 1px solid black;
+}
+
+.text{
+  background: #f0f8ff;
+}
+
+.controll{
+  font-size: 1rem;
+  background-color: #f0f8ff;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.user{
+  width: 100%;
+  text-align: center;
+  font-size: 5rem;
+  background-color: #f0f8ff;
+}
+.user_speace{
+  height: 5rem;
+}
+
+.new_and_edit{
+  background-color: #c0c0c0;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.new_and_edit h1{
+  color: #90ee90;
+}
+
+.back{
+  background-color: white;
+  border: thick double #32a1ce;
+}
+
+.link{
+  font-size: 2rem;
+}
