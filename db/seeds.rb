@@ -9,7 +9,7 @@
 50.times do |n|
   name = Faker::Name.name
   email = Faker::Internet.email
-  password = "password#{n}"
+  password = "#{n}1"
   User.create!(name: name,
               email: email,
               password: password,
